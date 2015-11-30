@@ -1,0 +1,16 @@
+.container {
+    width: 100%;
+}
+.liste {
+    width: 100%;
+    border-collapse: unset;
+    border-spacing: 2px;
+}
+.liste th, .liste tr, .liste td {
+    width: 33%;
+    text-align: center;
+    color: #fff;
+    background-color: #000;
+    border: thick #fff;
+    border-collapse: unset;
+}

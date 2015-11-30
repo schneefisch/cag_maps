@@ -1,0 +1,13 @@
+div.container {
+    overflow: hidden;
+    padding: 0;
+    color: #fff;
+    font-size: 23px;
+}
+.bg {
+    background-color: #000;
+}
+.bg:hover {
+    background-color: #adadad;
+    color: #000;
+}
