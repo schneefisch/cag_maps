@@ -1,54 +1,77 @@
 /*Navbar-Top*/
+
 #nav-top {
     background-color: #000;
     height: 60px;
     margin-bottom: 5px;
 }
-.Title, .NT, .FT {
+
+.Title,
+.NT,
+.FT {
     background-color: #000;
     height: 60px;
     color: #fff;
 }
-.Title:hover, .NT:hover {
+
+.Title:hover,
+.NT:hover {
     cursor: pointer;
 }
+
 .NT {
     text-align: center;
 }
+
 .NT:hover {
     background-color: #adadad;
     height: 60px;
     color: #000;
 }
+
 .nt-2p {
     display: none;
     width: 100%;
     margin-top: 0;
 }
+
 #nt-2 {
     margin-bottom: 0;
 }
+
 #nt-2 h2 {
     margin-top: 17px;
 }
+
 #nt-2 h3 {
     margin: 0 auto;
     color: #fff;
     padding-top: 15px;
 }
+
 #nt-2 h3:hover {
     color: #000;
 }
+
+
+
 /*Content*/
+
 iframe {
     width: 100%;
     height: 800px;
     border: none;
 }
+
 .p {
     margin: auto -30px;
 }
+
+
+
 /*Footer*/
+
 .FT {
     padding: 0;
 }
+
