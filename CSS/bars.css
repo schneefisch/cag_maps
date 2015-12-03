@@ -1,17 +1,21 @@
 /*Navbar-Top*/
 
 #nav-top {
-    background-color: #000;
+    background-color: #cccc00;
     height: 60px;
     margin-bottom: 5px;
+    background-image: url('IMG/gold-background.jpg');
 }
 
 .Title,
 .NT,
 .FT {
-    background-color: #000;
     height: 60px;
     color: #fff;
+}
+
+.FT {
+    background-color: #cccc00;
 }
 
 .Title:hover,
@@ -24,7 +28,7 @@
 }
 
 .NT:hover {
-    background-color: #adadad;
+    /*background-color: #adadad; */
     height: 60px;
     color: #000;
 }
