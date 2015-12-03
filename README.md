@@ -5,3 +5,12 @@ Dies ist ein Schülerprojekt, welches die Stolpersteine Stuttgarts auf einer Kar
 
 Beispielprojekt:
 http://www.stolpersteine-bremen.de/stadtplan.php 
+
+##ToDo's
+
+* Openstreetmap
+* Steinliste einpflegen
+* Navigation Fehlerbehebung
+* Design?
+* Entwickler einpflegen
+* Impressum/Kontakt
