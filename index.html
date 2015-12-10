@@ -19,24 +19,18 @@
         <div class="container" id="nav-top">
             <div class="col-md-12">
                 <div class="row">
-                    <div class="col-md-4 NT Title" onclick="Load()">
-                        <h2>&copy;Projekt PCAG</h2>
-                    </div>
-                    <div class="col-md-4 NT" onclick="Load1()">
-                        <h2>Steinliste</h2>
-                    </div>
-                    <div class="col-md-4 NT">
-                        <div class="row" id="nt-2">
-                            <h2 onclick="Load2()">Developers</h2>
-                        </div>
-                    </div>
+                    <ul class="NT">
+                        <li onclick="Load()">&copy;Projekt PCAG</li>
+                        <li onclick="Load1()">Steinliste</li>
+                        <li onclick="Load2()">Developers</li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <!--/Navbar-Top-->
+        <!-- /Navbar-Top -->
         <!--Content-->
         <div class="container">
-            <div class="col-md-12">
+            <div>
                 <div class="row p">
                     <iframe id="iframe" src="HTML/Karte.html"></iframe>
                 </div>
