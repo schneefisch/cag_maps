@@ -14,3 +14,9 @@ http://www.stolpersteine-bremen.de/stadtplan.php
 * Design?
 * Entwickler einpflegen
 * Impressum/Kontakt
+
+
+# Links:
+
+* https://rogerdudler.github.io/git-guide/index.de.html
+* http://www.w3schools.com 
