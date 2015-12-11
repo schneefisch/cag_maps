@@ -2,6 +2,7 @@
 <html>
     <head lang="de">
         <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>StolperSteinKarte</title>
         <link rel="icon" href="IMG/Icon.png">
         <link rel="stylesheet" type="text/css" href="CSS/vendor/bootstrap.css">
@@ -16,20 +17,20 @@
     </head>
     <body>
         <!-- Navbar-Top-->
-        <div class="container" id="nav-top">
-            <div class="col-md-12">
-                <div class="row">
-                    <ul class="NT">
-                        <li onclick="Load()">&copy;Projekt PCAG</li>
-                        <li onclick="Load1()">Steinliste</li>
-                        <li onclick="Load2()">Developers</li>
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container-fluid" id="nav-top">
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="navbar-link"><a onclick="Load()" href="#"> &copy;Projekt PCAG</a></li>
+                        <li class="navbar-link"><a onclick="Load1()" href="#">Steinliste</a></li>
+                        <li class="navbar-link"><a onclick="Load2()" href="#">Developers</a></li>
                     </ul>
                 </div>
             </div>
-        </div>
+        </nav>
         <!-- /Navbar-Top -->
         <!--Content-->
-        <div class="container">
+        <div class="container-fluid">
             <div>
                 <div class="row p">
                     <iframe id="iframe" src="HTML/Karte.html"></iframe>
@@ -38,7 +39,7 @@
         </div>
         <!--/Content-->
         <!--Footer-->
-        <div class="container FT">
+        <div class="container-fluid FT">
             <div class="col-md-12">
                 <div class="row FT">
                 </div>
