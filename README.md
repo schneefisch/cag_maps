@@ -19,6 +19,4 @@ http://www.stolpersteine-bremen.de/stadtplan.php
 # Links:
 
 * https://rogerdudler.github.io/git-guide/index.de.html
-* http://www.w3schools.com 
-
-probe testtest
+* http://www.w3schools.com
