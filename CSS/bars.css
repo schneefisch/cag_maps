@@ -31,36 +31,15 @@ ul.NT {
     background-color: #cccc00;
 }
 
-.Title:hover,
-.NT:hover {
+nav li {
     cursor: pointer;
 }
 
-.NT {
-    text-align: center;
-}
-
-.nt-2p {
-    display: none;
-    width: 100%;
-    margin-top: 0;
-}
-
-#nt-2 {
-    margin-bottom: 0;
-}
-
-#nt-2 h2 {
-    margin-top: 17px;
-}
-
-#nt-2 h3 {
-    margin: 0 auto;
-    color: #000;
-    padding-top: 15px;
-}
-
 /*Content*/
+
+#content {
+    margin-top: 55px;
+}
 
 iframe {
     width: 70%;
@@ -72,8 +51,6 @@ iframe {
 .p {
     margin: auto -30px;
 }
-
-
 
 /*Footer*/
 
