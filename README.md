@@ -3,9 +3,6 @@ Stuttgart City-Map with Stolpersteine
 
 Dies ist ein Schülerprojekt, welches die Stolpersteine Stuttgarts auf einer Karte darstellen möchte.
 
-Beispielprojekt:
-http://www.stolpersteine-bremen.de/stadtplan.php 
-
 ##ToDo's
 
 * Openstreetmap
@@ -16,7 +13,9 @@ http://www.stolpersteine-bremen.de/stadtplan.php
 * Impressum/Kontakt
 
 
-# Links:
+## Links:
 
 * https://rogerdudler.github.io/git-guide/index.de.html
 * http://www.w3schools.com
+* http://www.stolpersteine-bremen.de/stadtplan.php
+* http://schneefisch.ddns.net/
