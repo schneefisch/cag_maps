@@ -1,10 +1,4 @@
 /*Navbar-Top*/
-
-html {
-    background-color: none;
-}
-
-
 ul.NT {
     list-style: none;
 }
@@ -43,9 +37,9 @@ nav li {
 
 iframe {
     width: 70%;
-    height: 500px;
+    height: 800px;
     border: none;
-    margin: 0% 15% 5% 15%;
+    margin: 0 15%;
 }
 
 .p {
@@ -72,7 +66,7 @@ h6 { font-size: 1em; }
 
 @-webkit-keyframes color_change {
 	from { background-color: #666666; }
-	to { background-color: #ffffff; }
+	to { background-color: #fff; }
 }
 @-moz-keyframes color_change {
 	from { background-color: #666666; }
