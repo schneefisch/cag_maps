@@ -1,14 +1,5 @@
 /*Navbar-Top*/
 
-.Title,
-.FT {
-    color: #000;
-}
-
-.FT {
-    background-color: #cccc00;
-}
-
 .navbar-nav li {
     cursor: pointer;
     /* damit die buttons wieder in die urspruengliche Farbe gehen */
@@ -38,6 +29,7 @@
 
 #content {
     margin-top: 55px;
+    margin-bottom: 30px;
 }
 
 iframe {
@@ -53,9 +45,12 @@ iframe {
 
 /*Footer*/
 
-.FT {
-    padding: 0;
+#footer .navbar-nav > li > a, .navbar-brand {
+    padding-top:4px !important;
+    padding-bottom:0 !important;
+    height: 28px;
 }
+#footer.navbar {min-height:28px !important;}
 
 /* Fonts */
 
