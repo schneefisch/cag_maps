@@ -7,9 +7,13 @@
         <link rel="icon" href="IMG/Icon.png">
         <link rel="stylesheet" type="text/css" href="CSS/vendor/bootstrap.css">
         <link rel="stylesheet" href="CSS/bars.css"/>
-        <script src="JS/vendor/jquery-2.1.4.js"></script>
+        <link rel="stylesheet" href="JS/leaflet/leaflet.css"/>
+        <link rel="stylesheet" href="CSS/map.css">
+        <script src="JS/vendor/jquery.js"></script>
         <script src="JS/vendor/bootstrap.js"></script>
+        <script src="JS/leaflet/leaflet.js"></script>
         <script src="JS/main.js"></script>
+        <script src="JS/map.js"></script>
     </head>
     <body>
         <!-- Navbar-Top-->
@@ -29,7 +33,8 @@
         <div class="container-fluid" id="content">
             <div>
                 <div class="row p">
-                    <iframe id="iframe" src="HTML/Karte.html"></iframe>
+                    <div id="map"></div>
+                    <!--<iframe id="iframe" src="HTML/Karte.html"></iframe>-->
                 </div>
             </div>
         </div>
@@ -42,5 +47,11 @@
             </div>
         </div>
         <!--/Footer-->
+        <script type="text/javascript">
+            // erst ausfuehren wenn die ganze Seite geladen ist
+            $(document).ready(function() {
+                initializeLeaflet();
+            });
+        </script>
     </body>
 </html>

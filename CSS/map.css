@@ -10,7 +10,7 @@ body {
 }
 #map_canvas,
 #map {
-    height: 800px;
+    height: 500px;
     width: 100%;
 }
 .NT {
