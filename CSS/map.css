@@ -10,8 +10,9 @@ body {
 }
 #map_canvas,
 #map {
-    height: 500px;
-    width: 100%;
+    height: 400px;
+    width: 70%;
+    margin: 0 15%;
 }
 .NT {
     background-color: #000;
