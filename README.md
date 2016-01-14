@@ -5,7 +5,7 @@ Dies ist ein Schülerprojekt, welches die Stolpersteine Stuttgarts auf einer Kar
 
 ##ToDo's
 
-* Openstreetmap
+* Openstreetmap 
 * Steinliste einpflegen
 * Navigation Fehlerbehebung
 * Design?
