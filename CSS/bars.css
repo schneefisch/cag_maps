@@ -1,9 +1,10 @@
 /*Navbar-Top*/
 
 #nav-top {
-    background-color: #cccc00;
+    background-color: #3e3e28;
     height: 60px;
     margin-bottom: 5px;
+    background-image: url("https://github.com/schneefisch/cag_maps/raw/master/IMG/gold-background.jpg");
 }
 
 .Title,
