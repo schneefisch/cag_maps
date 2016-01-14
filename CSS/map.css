@@ -14,6 +14,9 @@ body {
     width: 70%;
     margin: 0 15%;
 }
+#map {
+    margin-bottom: 20px;
+}
 .NT {
     background-color: #000;
     color: #fff;

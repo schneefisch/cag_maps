@@ -38,4 +38,10 @@ function initializeNavigation() {
         target.empty();
         target.load("HTML/Developers.html");
     });
-}
+
+    // Impressum Button
+    $("#nav_impressum").click(function() {
+        target.empty();
+        target.load("HTML/impressum.html");
+    });
+    }
