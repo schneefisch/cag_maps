@@ -10,7 +10,7 @@ Dies ist ein Schülerprojekt, welches die Stolpersteine Stuttgarts auf einer Kar
 * Navigation Fehlerbehebung
 * Design?
 * Entwickler einpflegen
-* Impressum/Kontakt
+* Impressum/Kontaktgit
 
 
 ## Links:
