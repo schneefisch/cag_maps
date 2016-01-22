@@ -20,4 +20,9 @@ Dies ist ein Schülerprojekt, welches die Stolpersteine Stuttgarts auf einer Kar
 * http://www.stolpersteine-bremen.de/stadtplan.php
 * http://schneefisch.ddns.net/
 
-probe!
+## SCHEISSE:
+
+* Ich kann immer noch nicht mit dem Mac pushen
+* aber immernoch mit dem PC
+* #Kacke
+* #gehtnicht
