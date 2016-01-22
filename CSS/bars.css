@@ -1,43 +1,40 @@
 /*Navbar-Top*/
-ul.NT {
-    list-style: none;
-}
 
-.NT li {
-    width: 33%;
-    float: left;
-}
-
-.NT li:hover {
-    animation-name: color_change;
-    animation-duration: 1s;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-.Title,
-.NT,
-.FT {
-    color: #000;
-}
-
-.FT {
-    background-color: #cccc00;
-}
-
-nav li {
+.navbar-nav li {
     cursor: pointer;
+    /* damit die buttons wieder in die urspruengliche Farbe gehen */
+    background-color: transparent;
+    color: #777;
+    -moz-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+.navbar-nav li:hover {
+    color: #333;
+    background-color: #888;
+    -moz-transition: all 0.4s ease;
+    -webkit-transition: all 0.4s ease;
+    -o-transition: all 0.4s ease;
+    transition: all 0.4s ease;
+}
+
+#nav-top .navbar-nav li a,
+#nav-top .navbar-nav li a:hover {
+    color: inherit;
 }
 
 /*Content*/
 
 #content {
     margin-top: 55px;
+    margin-bottom: 30px;
 }
 
 iframe {
     width: 70%;
-    height: 800px;
+    height: 600px;
     border: none;
     margin: 0 15%;
 }
@@ -48,9 +45,12 @@ iframe {
 
 /*Footer*/
 
-.FT {
-    padding: 0;
+#footer .navbar-nav > li > a, .navbar-brand {
+    padding-top:4px !important;
+    padding-bottom:0 !important;
+    height: 28px;
 }
+#footer.navbar {min-height:28px !important;}
 
 /* Fonts */
 
@@ -61,26 +61,3 @@ h4 { font-size: 1.1em; }
 h5 { font-size: 1em; }
 h6 { font-size: 1em; }
 
-
-/* animations */
-
-@-webkit-keyframes color_change {
-	from { background-color: #666666; }
-	to { background-color: #fff; }
-}
-@-moz-keyframes color_change {
-	from { background-color: #666666; }
-	to { background-color: #ffffff; }
-}
-@-ms-keyframes color_change {
-	from { background-color: #666666; }
-	to { background-color: #ffffff; }
-}
-@-o-keyframes color_change {
-	from { background-color: #666666; }
-	to { background-color: #ffffff; }
-}
-@keyframes color_change {
-	from { background-color: #666666; }
-	to { background-color: #ffffff; }
-}

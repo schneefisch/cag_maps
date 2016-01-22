@@ -3,14 +3,19 @@
     <head>
         <meta name="viewport" content="initial-scale=1.0, user-scalable=no"/>
         <link rel="stylesheet" href="../CSS/map.css">
-        <script type="text/javascript"
-                src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAYJBmfGiL6ZWAVlcR6Y9w6UYwS7Dd1fdE&sensor=true">
-        </script>
+        <!--<script type="text/javascript"-->
+                <!--src="http://maps.googleapis.com/maps/api/js?key=AIzaSyAYJBmfGiL6ZWAVlcR6Y9w6UYwS7Dd1fdE&sensor=true">-->
+        <!--</script>-->
+        <link rel="stylesheet" href="../JS/leaflet/leaflet.css"/>
+        <script src="../JS/vendor/jquery.js"></script>
+        <script src="../JS/leaflet/leaflet.js"></script>
         <script src="../JS/map.js"></script>
     </head>
-    <body onload="initialize()">
+    <body>
         <div class="container">
-            <div id="map_canvas"></div>
+            <div id="map_canvas">
+                <div id="map"></div>
+            </div>
         </div>
         <!--
         <div class="col-md-12 NT">
@@ -18,5 +23,6 @@
             <img src="../IMG/ajax-loader.gif" id="loader" style="display: none">
         </div>
         -->
+
     </body>
 </html>

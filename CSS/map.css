@@ -8,9 +8,14 @@ body {
     margin: 0;
     padding: 0
 }
-#map_canvas {
-    height: 800px;
-    width: 100%;
+#map_canvas,
+#map {
+    height: 400px;
+    width: 70%;
+    margin: 0 15%;
+}
+#map {
+    margin-bottom: 20px;
 }
 .NT {
     background-color: #000;
