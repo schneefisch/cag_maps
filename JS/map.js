@@ -45,4 +45,7 @@ function initializeLeaflet() {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     }).addTo(map);
+
+    L.marker([48.7595,9.156939999999999]).addTo(map)
+    .bindPopup('<a target="_blank" href="http://www.stolpersteine-stuttgart.de/index.php?docid=748&mid=66">Gottlob Assenheimer <br> Finkenstr. 28</a><br> ')
 }
