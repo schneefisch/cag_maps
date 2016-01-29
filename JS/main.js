@@ -50,4 +50,9 @@ function initializeNavigation() {
             target.empty();
             target.load("HTML/kontakt.html");
         });
+    // Kontakt Button
+            $("#nav_referenz").click(function() {
+                target.empty();
+                target.load("HTML/referenz.html");
+            });
     }
