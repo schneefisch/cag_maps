@@ -38,4 +38,10 @@ function initializeNavigation() {
         target.empty();
         target.load("HTML/Developers.html");
     });
+
+    // Entwickler Button
+    $("#impressum").click(function() {
+        target.empty();
+        target.load("HTML/Developers.html");
+    });
 }
