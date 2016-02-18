@@ -25,6 +25,8 @@
     color: inherit;
 }
 
+.navbar-link {font-size: 1.3em}
+
 /*Content*/
 
 #content {
