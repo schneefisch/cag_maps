@@ -23,6 +23,10 @@ Dies ist ein Schülerprojekt, welches die Stolpersteine Stuttgarts auf einer Kar
 
 ## Problem resolving with GIT:
 
-on Windows there are problems if the original "git for windows" is not installed. 
-E.g. the IntelliJ-Integration will not work.  
-To fix these issues, download and install git for windows from http://git-scm.com/download/win 
+### Windows
+Auf windows kann es Probleme mit der IntelliJ Integration und Git geben. 
+Um das zu beheben, installiere "git for windows" von http://git-scm.com/download/win 
+
+### Mac
+Installiere XCode und die "Command Line Tools" (https://developer.apple.com/downloads/index.action?=command%20line%20tools)
+Dafür braucht man aber einen (kostenlosen) (developer) account bei Apple
