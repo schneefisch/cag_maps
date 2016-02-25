@@ -25,6 +25,12 @@
     color: inherit;
 }
 
+.navbar-toggle .icon-bar {
+    width: 22px;
+    height: 3px;
+    border-radius: 1px;
+    background-color: #333;
+}
 /*Content*/
 
 #content {

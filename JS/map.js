@@ -48,4 +48,7 @@ function initializeLeaflet() {
 
     L.marker([48.7595,9.156939999999999]).addTo(map)
     .bindPopup('<a target="_blank" href="http://www.stolpersteine-stuttgart.de/index.php?docid=748&mid=66">Gottlob Assenheimer <br> Finkenstr. 28</a><br> ')
+
+    L.marker([48.76943,9.16066]).addTo(map)
+        .bindPopup('<a target="_blank" href="http://www.stolpersteine-stuttgart.de/index.php?docid=677&mid=66">Ludwig Fleischer <br> Reuchlinstr. 9</a><br> ')
 }

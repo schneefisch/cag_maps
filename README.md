@@ -11,7 +11,7 @@ Dies ist ein Schülerprojekt, welches die Stolpersteine Stuttgarts auf einer Kar
 * Design?
 * Entwickler einpflegen
 * Impressum/Kontaktgit
-
+* Map Zoom kleiner machen
 
 ## Links:
 
