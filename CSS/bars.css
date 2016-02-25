@@ -5,23 +5,23 @@
     /* damit die buttons wieder in die urspruengliche Farbe gehen */
     background-color: transparent;
     color: #777;
-    -moz-transition: all 0.4s ease;
+/*    -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
+    transition: all 0.4s ease; */
 }
 
 .navbar-nav li:hover {
     color: #333;
     background-color: #888;
-    -moz-transition: all 0.4s ease;
+/*    -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
-    transition: all 0.4s ease;
+    transition: all 0.4s ease; */
 }
 
-#nav-top .navbar-nav li a,
-#nav-top .navbar-nav li a:hover {
+#bs-navbar .navbar-nav li a,
+#bs-navbar .navbar-nav li a:hover {
     color: inherit;
 }
 
