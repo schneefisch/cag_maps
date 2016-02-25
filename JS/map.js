@@ -1,4 +1,62 @@
 var map;
+
+function initializeLeaflet() {
+    // get the map and set the focus
+    map = L.map('map').setView([48.7772,9.1881], 13);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+}
+
+function addMarkers(data) {
+    console.log("stolpersteine daten:");
+
+    // teile beim zeilenumbruch '\n'
+    var alleZeilen = data.split(/\r\n|\n/);
+    console.log(alleZeilen);
+
+    // titelzeile
+    var titel = alleZeilen[0].split(",");
+    console.log(titel);
+    var zeilen = [];
+
+    // hole alle Zeilen und teile beim komma
+    for (var i=1; i < alleZeilen.length; i++) {
+        var zeile_tmp = alleZeilen[i].split(',');
+
+        // pruefe ob die Zeile die gleiche laenge wie der Titel hat
+        if (zeile_tmp.length == titel.length) {
+            zeilen.push(zeile_tmp);
+        }
+    }
+
+    // fuege die Marker hinzu
+    for (var i=0; i < zeilen.length; i++) {
+        var zeile = zeilen[i];
+        var text = '<a target="_blank" href="' + zeile[2] + '">' + zeile[0] + '</a><br>' + zeile[1];
+        L.marker([zeile[3],zeile[4]]).addTo(map).bindPopup(text);
+    }
+}
+
+function loadCSV() {
+    $.ajax({
+        type: "GET",
+        url: "ressources/stolpersteine.csv",
+        dataType: "text",
+        success: function(data) {
+            addMarkers(data);
+        }
+    });
+}
+
+$(document).ready(function() {
+    initializeNavigation();
+    initializeLeaflet();
+    loadCSV();
+});
+
+
 //function initialize() {
 //
 //    // Karte laden und definieren welcher Ausschnitt angezeigt wird
@@ -27,28 +85,13 @@ var map;
 //        animation: google.maps.Animation.DROP
 //    })
 //}
+//
 
 
-function initializeLeaflet() {
-    // get the map and set the focus
-    map = L.map('map').setView([48.7772,9.1881], 14);
 
-//  mapbox url
-//  https://api.mapbox.com/styles/v1/froeser/ciiac5ar3009fnqlzcdm8ic25.html?title=true&access_token=pk.eyJ1IjoiZnJvZXNlciIsImEiOiJjaWlhYm0ydmUwMDFsdW9senlyeDBldm1vIn0.0qyTvm5CRWn6IthnGUgnOA#13.000607421381691/48.774683621741616/9.176580894088033/0
-//    L.tileLayer('https://api.mapbox.com/styles/v1/froeser/ciiac5ar3009fnqlzcdm8ic25.html?title=true&access_token={accessToken}#{z}/{x}/{y}/0', {
-//        attribution: 'Map data &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors, <a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="http://mapbox.com">Mapbox</a>',
-//        maxZoom: 18,
-//        id: 'ciiac5ar3009fnqlzcdm8ic25',
-//        accessToken: 'pk.eyJ1IjoiZnJvZXNlciIsImEiOiJjaWlhYm0ydmUwMDFsdW9senlyeDBldm1vIn0.0qyTvm5CRWn6IthnGUgnOA'
-//    }).addTo(map);
-
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
-
-    L.marker([48.7595,9.156939999999999]).addTo(map)
-    .bindPopup('<a target="_blank" href="http://www.stolpersteine-stuttgart.de/index.php?docid=748&mid=66">Gottlob Assenheimer <br> Finkenstr. 28</a><br> ')
-
-    L.marker([48.76943,9.16066]).addTo(map)
-        .bindPopup('<a target="_blank" href="http://www.stolpersteine-stuttgart.de/index.php?docid=677&mid=66">Ludwig Fleischer <br> Reuchlinstr. 9</a><br> ')
-}
+//{"Ludwg Fleischer": {
+//        "strasse": "Reuchlinstr. 9",
+//        "url": "...",
+//        "lat": "asdf"
+//    }
+//}
