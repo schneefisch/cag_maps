@@ -46,13 +46,14 @@ function initializeNavigation() {
     });
 
     // Kontakt Button
-        $("#nav_kontakt").click(function() {
-            target.empty();
-            target.load("HTML/kontakt.html");
-        });
+    $("#nav_kontakt").click(function() {
+        target.empty();
+        target.load("HTML/kontakt.html");
+    });
+
     // Kontakt Button
-            $("#nav_referenz").click(function() {
-                target.empty();
-                target.load("HTML/referenz.html");
-            });
-    }
+    $("#nav_referenz").click(function() {
+        target.empty();
+        target.load("HTML/referenz.html");
+    });
+}

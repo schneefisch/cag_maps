@@ -2,12 +2,12 @@ div.container {
     overflow: hidden;
     padding: 0;
     color: #fff;
-    font-size: 23px;
+    font-size: 1em;
 }
 .bg {
-    background-color: #000;
+    background-color: #4995AD;
 }
 .bg:hover {
-    background-color: #adadad;
-    color: #000;
+    background-color: #4995AD;
+    color: #fff;
 }
