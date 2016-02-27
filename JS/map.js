@@ -50,12 +50,6 @@ function loadCSV() {
     });
 }
 
-$(document).ready(function() {
-    initializeNavigation();
-    initializeLeaflet();
-    loadCSV();
-});
-
 
 //function initialize() {
 //

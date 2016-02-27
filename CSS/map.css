@@ -8,11 +8,16 @@ body {
     margin: 0;
     padding: 0
 }
+
+#include_content .container {
+    margin: 0;
+    padding: 0;
+    width 100%;
+}
+
 #map_canvas,
 #map {
-    height: 400px;
-    width: 70%;
-    margin: 0 15%;
+    height: 100vh;
 }
 #map {
     margin-bottom: 20px;

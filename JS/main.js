@@ -21,10 +21,12 @@ function initializeNavigation() {
 
     // finde das <div id="include_content"> in welches die Inhalte eingefuegt werden sollen
     var target = $("#include_content");
+    target.load("HTML/map.html");
 
     // Home-button
     $("#nav_home").click(function() {
         target.empty();
+        target.load("HTML/map.html");
     });
 
     // Steine Button
@@ -57,3 +59,6 @@ function initializeNavigation() {
         target.load("HTML/referenz.html");
     });
 }
+
+
+

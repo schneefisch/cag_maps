@@ -16,11 +16,10 @@
     <script src="JS/vendor/bootstrap.js"></script>
     <script src="JS/leaflet/leaflet.js"></script>
     <script src="JS/main.js"></script>
-    <script src="JS/map.js"></script>
 </head>
 <body>
 <!-- Navbar-Top-->
-<div class="container">
+<div id="topmenu" class="container-fluid">
     <div class="navbar-header">
         <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
                 aria-controls="bs-navbar" aria-expanded="false">
@@ -44,9 +43,7 @@
 <div class="container-fluid" id="content">
     <div>
         <div class="row p">
-            <div id="map"></div>
             <div id="include_content"></div>
-            <!--<iframe id="iframe" src="HTML/Karte.html"></iframe>-->
         </div>
     </div>
 </div>
@@ -63,8 +60,8 @@
         </div>
     </div>
 </nav>
-<!--/Footer-->
-<script type="text/javascript">
+<script>
+    initializeNavigation();
 </script>
 </body>
 </html>

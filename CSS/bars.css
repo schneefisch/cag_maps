@@ -1,10 +1,14 @@
 /*Navbar-Top*/
 
+#topmenu {
+    background-color: #549ED4;
+    color: #fff;
+}
+
 .navbar-nav li {
     cursor: pointer;
     /* damit die buttons wieder in die urspruengliche Farbe gehen */
     background-color: transparent;
-    color: #777;
 /*    -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
@@ -37,8 +41,7 @@
 /*Content*/
 
 #content {
-    margin-top: 55px;
-    margin-bottom: 30px;
+    padding-bottom: 28px;
 }
 
 iframe {
@@ -46,10 +49,6 @@ iframe {
     height: 600px;
     border: none;
     margin: 0 15%;
-}
-
-.p {
-    margin: auto -30px;
 }
 
 /*Footer*/
