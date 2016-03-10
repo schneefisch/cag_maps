@@ -1,7 +1,11 @@
 /*Navbar-Top*/
 
+body {
+    background-color: #038681;
+}
+
 #topmenu {
-    background-color: #549ED4;
+    background-color: #3D3E3F;
     color: #fff;
 }
 
@@ -17,11 +21,16 @@
 
 .navbar-nav li:hover {
     color: #333;
-    background-color: #888;
+    background-color: #038681;
 /*    -moz-transition: all 0.4s ease;
     -webkit-transition: all 0.4s ease;
     -o-transition: all 0.4s ease;
     transition: all 0.4s ease; */
+}
+
+li > a:hover {
+    text-decoration: none;
+    background-color: #038681;
 }
 
 #bs-navbar .navbar-nav li a,
@@ -37,6 +46,10 @@
 }
 
 .navbar-link {font-size: 1.3em}
+.navbar-link:hover,
+.navbar-link:active {
+    background-color: #038681;
+}
 
 /*Content*/
 
@@ -50,6 +63,17 @@ iframe {
     margin: 0 15%;
 }
 
+#developer_container {
+    padding-right: 0;
+    padding-left: 0;
+    margin-right: 0;
+    margin-left: 0;
+}
+
+.bg {
+    background-color: #038681;
+}
+
 /*Footer*/
 
 #footer .navbar-nav > li > a, .navbar-brand {
@@ -58,6 +82,11 @@ iframe {
     height: 28px;
 }
 #footer.navbar {min-height:28px !important;}
+
+.navbar-inverse {
+    background-color: #3D3E3F;
+    border-color: #080808;
+}
 
 /* Fonts */
 
@@ -68,4 +97,6 @@ h4 { font-size: 1.1em; }
 h5 { font-size: 1em; }
 h6 { font-size: 1em; }
 
-
+a {
+    color: #000;
+}
