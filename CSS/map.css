@@ -15,13 +15,9 @@ body {
     width 100%;
 }
 
-#map_canvas,
 #map {
-    height: 100vh;
 }
-#map {
-    margin-bottom: 20px;
-}
+
 .NT {
     background-color: #000;
     color: #fff;
@@ -34,4 +30,19 @@ body {
 }
 #localize {
     margin-top: 20px;
+}
+
+
+@media screen and (min-width: 768px) {
+    #map_canvas,
+    #map {
+        height: calc(100vh - 78px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #map_canvas,
+    #map {
+        height: calc(100vh - 53px);
+    }
 }
