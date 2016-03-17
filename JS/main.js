@@ -42,21 +42,15 @@ function initializeNavigation() {
     });
 
     // Impressum Button
-    $("#nav_impressum").click(function() {
+    $(".nav_impressum").click(function() {
         target.empty();
         target.load("HTML/impressum.html");
     });
 
     // Kontakt Button
-    $("#nav_kontakt").click(function() {
+    $(".nav_kontakt").click(function() {
         target.empty();
         target.load("HTML/kontakt.html");
-    });
-
-    // Kontakt Button
-    $("#nav_referenz").click(function() {
-        target.empty();
-        target.load("HTML/referenz.html");
     });
 }
 
