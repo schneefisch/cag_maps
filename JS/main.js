@@ -48,9 +48,9 @@ function initializeNavigation() {
     });
 
     // Kontakt Button
-    $(".nav_kontakt").click(function() {
+    $(".nav_referenz").click(function() {
         target.empty();
-        target.load("HTML/kontakt.html");
+        target.load("HTML/datenschutz.html");
     });
 }
 
