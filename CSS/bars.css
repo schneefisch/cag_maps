@@ -42,7 +42,7 @@ li > a:hover {
     width: 22px;
     height: 3px;
     border-radius: 1px;
-    background-color: #333;
+    background-color: #fff;
 }
 
 .navbar-link {font-size: 1.3em}
@@ -54,6 +54,10 @@ li > a:hover {
 /*Content*/
 
 #content {
+    position: absolute;
+    top: 52px;
+    width: 100%;
+    z-index: -1
 }
 .text_content {
 
