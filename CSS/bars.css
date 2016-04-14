@@ -1,7 +1,17 @@
 /*Navbar-Top*/
 
+
+html {
+    height: 100%
+}
+
+
 body {
     background-color: #038681;
+
+    height: 100%;
+    margin: 0;
+    padding: 0
 }
 
 #topmenu {
@@ -16,19 +26,11 @@ body {
     cursor: pointer;
     /* damit die buttons wieder in die urspruengliche Farbe gehen */
     background-color: transparent;
-/*    -moz-transition: all 0.4s ease;
-    -webkit-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease; */
 }
 
 .navbar-nav li:hover {
     color: #333;
     background-color: #038681;
-/*    -moz-transition: all 0.4s ease;
-    -webkit-transition: all 0.4s ease;
-    -o-transition: all 0.4s ease;
-    transition: all 0.4s ease; */
 }
 
 li > a:hover {
@@ -110,4 +112,26 @@ h6 { font-size: 1em; }
 
 a {
     color: #000;
+}
+
+/* maps */
+
+#include_content .container {
+    margin: 0;
+    padding: 0;
+    width 100%;
+}
+
+@media screen and (min-width: 768px) {
+    #map_canvas,
+    #map {
+        height: calc(100vh - 78px);
+    }
+}
+
+@media screen and (max-width: 767px) {
+    #map_canvas,
+    #map {
+        height: calc(100vh - 53px);
+    }
 }
