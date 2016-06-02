@@ -70,25 +70,21 @@ function errorCB(error) {
     console.log(error);
 
     switch(error.code) {
-        case error.PERMISSION_DENIED:
+        case 1:
             console.log("Permission denied");
             alert("Permission denied");
 
-        case error.POSITION_UNAVAILABLE:
+        case 2:
             console.log("Position Unavailable");
             alert("Position Unavailable");
 
-        case error.TIMEOUT:
+        case 3:
             console.log("timeout");
             alert("timeout");
 
-        case error.UNKNOWN_ERROR:
-            console.log("an unknown error occured");
-            alert("an unknown error occured");
-
         default:
             console.log("an unknown error occured");
-            alert("an unknown error occured (default)");
+            alert("an unknown error occured");
     }
 
     initializeLeaflet();
