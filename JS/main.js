@@ -59,12 +59,39 @@ function showPosition(position) {
     console.log(position);
     lat = position.coords.latitude;
     lng = position.coords.longitude;
-    zoom = 13;
-    initializeLeaflet()
+    zoom = 16;
+    initializeLeaflet();
 }
+
+//const
 
 function errorCB(error) {
     console.log("runErrorCheck");
+    console.log(error);
+
+    switch(error.code) {
+        case error.PERMISSION_DENIED:
+            console.log("Permission denied");
+            alert("Permission denied");
+
+        case error.POSITION_UNAVAILABLE:
+            console.log("Position Unavailable");
+            alert("Position Unavailable");
+
+        case error.TIMEOUT:
+            console.log("timeout");
+            alert("timeout");
+
+        case error.UNKNOWN_ERROR:
+            console.log("an unknown error occured");
+            alert("an unknown error occured");
+
+        default:
+            console.log("an unknown error occured");
+            alert("an unknown error occured (default)");
+    }
+
+    initializeLeaflet();
 }
 
 function getPosition() {
