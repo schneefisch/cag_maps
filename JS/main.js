@@ -50,10 +50,36 @@ function initializeNavigation() {
 // maps functionality
 
 var map;
+var lat = 48.7772;
+var lng = 9.1881;
+var zoom = 13
+
+function showPosition(position) {
+    console.log("runShowPosition");
+    console.log(position);
+    lat = position.coords.latitude;
+    lng = position.coords.longitude;
+    zoom = 13;
+    initializeLeaflet()
+}
+
+function errorCB(error) {
+    console.log("runErrorCheck");
+}
+
+function getPosition() {
+    console.log("runGetPosition");
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(showPosition, errorCB);
+    } else {
+        console.log("Geolocation is not supported by this browser.");
+    }
+}
 
 function initializeLeaflet() {
+
     // get the map and set the focus
-    map = L.map('map').setView([48.7772,9.1881], 13);
+    map = L.map('map').setView([lat, lng], zoom);
 
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
         attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -61,15 +87,15 @@ function initializeLeaflet() {
 }
 
 function addMarkers(data) {
-    console.log("stolpersteine daten:");
+    //console.log("stolpersteine daten:");
 
     // teile beim zeilenumbruch '\n'
     var alleZeilen = data.split(/\r\n|\n/);
-    console.log(alleZeilen);
+    //console.log(alleZeilen);
 
     // titelzeile
     var titel = alleZeilen[0].split(",");
-    console.log(titel);
+    //console.log(titel);
     var zeilen = [];
 
     // hole alle Zeilen und teile beim komma
