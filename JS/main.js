@@ -69,18 +69,24 @@ function errorCB(error) {
     console.log("runErrorCheck");
     console.log(error);
 
-    switch(error.code) {
+    var e = error.code;
+    console.log(e);
+
+    switch(e) {
         case 1:
             console.log("Permission denied");
             alert("Permission denied");
+            break;
 
         case 2:
             console.log("Position Unavailable");
             alert("Position Unavailable");
+            break;
 
         case 3:
             console.log("timeout");
             alert("timeout");
+            break;
 
         default:
             console.log("an unknown error occured");
@@ -97,16 +103,6 @@ function getPosition() {
     } else {
         console.log("Geolocation is not supported by this browser.");
     }
-}
-
-function initializeLeaflet() {
-
-    // get the map and set the focus
-    map = L.map('map').setView([lat, lng], zoom);
-
-    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
-    }).addTo(map);
 }
 
 function addMarkers(data) {
@@ -148,4 +144,16 @@ function loadCSV() {
             addMarkers(data);
         }
     });
+}
+
+function initializeLeaflet() {
+
+    // get the map and set the focus
+    map = L.map('map').setView([lat, lng], zoom);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+        attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+    }).addTo(map);
+
+    loadCSV();
 }
