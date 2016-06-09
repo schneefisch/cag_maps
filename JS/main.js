@@ -112,7 +112,7 @@ function updateCurrentPositionMarker(pos) {
     lng = pos.coords.longitude;
 
     // update marker position
-    myPositionMarker.setLatLng(L.latLng(48.7772, 9.1881));
+    myPositionMarker.setLatLng(L.latLng(lat, lng));
 }
 
 function updateCurrentPositionDenied(err) {
