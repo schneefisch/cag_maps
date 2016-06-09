@@ -135,3 +135,11 @@ a {
         height: calc(100vh - 53px);
     }
 }
+
+/* my marker */
+
+.posicon {
+    background-color: #ff0000;
+    border-radius: 50%;
+    box-shadow: 2px 3px 9px 0px #000;
+}

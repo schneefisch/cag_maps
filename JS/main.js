@@ -52,7 +52,10 @@ function initializeNavigation() {
 var map;
 var lat = 48.7772;
 var lng = 9.1881;
-var zoom = 13
+var zoom = 13;
+var myPositionMarker;
+var getPositionDenied = false;
+var interval;
 
 function showPosition(position) {
     console.log("runShowPosition");
@@ -66,8 +69,6 @@ function showPosition(position) {
 //const
 
 function errorCB(error) {
-    console.log("runErrorCheck");
-    console.log(error);
 
     var e = error.code;
     console.log(e);
@@ -75,17 +76,15 @@ function errorCB(error) {
     switch(e) {
         case 1:
             console.log("Permission denied");
-            alert("Permission denied");
+            getPositionDenied = true;
             break;
 
         case 2:
             console.log("Position Unavailable");
-            alert("Position Unavailable");
             break;
 
         case 3:
             console.log("timeout");
-            alert("timeout");
             break;
 
         default:
@@ -98,12 +97,31 @@ function errorCB(error) {
 
 function getPosition() {
     console.log("runGetPosition");
-    if (navigator.geolocation) {
+    if (navigator.geolocation && !getPositionDenied) {
         navigator.geolocation.getCurrentPosition(showPosition, errorCB);
     } else {
+        getPositionDenied = true;
         console.log("Geolocation is not supported by this browser.");
     }
 }
+
+function updateCurrentPositionMarker(pos) {
+    console.log("runShowPosition");
+    console.log(pos);
+    lat = pos.coords.latitude;
+    lng = pos.coords.longitude;
+
+    // update marker position
+    myPositionMarker.setLatLng(L.latLng(48.7772, 9.1881));
+}
+
+function updateCurrentPositionDenied(err) {
+    // stop requesting position in future
+    getPositionDenied = true;
+    // stop interval
+    clearInterval(interval);
+}
+
 
 function addMarkers(data) {
     //console.log("stolpersteine daten:");
@@ -132,6 +150,32 @@ function addMarkers(data) {
         var zeile = zeilen[i];
         var text = '<a target="_blank" href="' + zeile[2] + '">' + zeile[0] + '</a><br>' + zeile[1];
         L.marker([zeile[3],zeile[4]]).addTo(map).bindPopup(text);
+    }
+
+    // fuege einmalig aktuelle position hinzu
+    var myPosition = L.divIcon({className: 'posicon'});
+    // you can set .my-div-icon styles in CSS
+
+    myPositionMarker = L.marker([lat, lng], {icon: myPosition}).addTo(map);
+
+    // update current user position
+    if (!getPositionDenied) {
+        interval = setInterval(function() {
+//            console.log("update");
+
+            // check if user denied loading the position
+            if (getPositionDenied) {
+                clearInterval(interval);
+                return;
+            }
+
+            // load position
+            if (navigator.geolocation && !getPositionDenied) {
+                navigator.geolocation.getCurrentPosition(
+                    updateCurrentPositionMarker,
+                    updateCurrentPositionDenied);
+            }
+        }, 5000);
     }
 }
 
