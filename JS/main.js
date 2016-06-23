@@ -143,7 +143,7 @@ function addMarkers(data) {
 // userposition
 
 var latMaxDist = 0.13;
-var lngMaxDist = 0.28;
+var lngMaxDist = 0.2;
 var userPositionMarker;
 var canUseUserPosition = true;
 var interval;
@@ -199,6 +199,8 @@ function setUserPositionSuccess(pos) {
         fillOpacity: 0.3
     }).addTo(map);
 
+
+    userPositionMarker.on('click', clickCallback);
 }
 
 // callback für userPosition() FAILURE
@@ -264,7 +266,7 @@ function updateUserPositionOnInterval(pos) {
     var uacc = pos.coords.accuracy;
 
     userPositionMarker.setLatLng([ulat, ulng]);
-    userPositionMarker.setRadius(uacc);
+    userPositionMarker.setRadius(uacc / 2);
 }
 
 function stopUpdatingUserPosition() {
@@ -274,6 +276,27 @@ function stopUpdatingUserPosition() {
 
 
 
+// -------------
+// Klick-Meldungen
 
+var meldungen = [
+    "Lass mich gefälligst in Ruhe!!!",
+    "Autsch",
+    "Es geht nicht schneller!",
+    "So ungenau?!",
+    "Schnarch*********",
+    "Ups",
+    "Piep",
+    "Oink"
+];
 
+function clickCallback(event) {
 
+    // Anzahl, wie viele Meldungen wir haben
+    var nr = 8;
+
+    // choose random message
+    var index = Math.floor(Math.random() * nr);
+
+    alert(meldungen[index]);
+}
