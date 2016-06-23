@@ -143,34 +143,31 @@ function addMarkers(data) {
 // userposition
 
 var latMaxDist = 0.13;
-var lngMaxDist = 0.2;
+var lngMaxDist = 0.28;
 var userPositionMarker;
 var canUseUserPosition = true;
 var interval;
 
+/*
+    Schritte:
+
+    1. versuche die user-position zu bekommen
+    1a: ja      -> 2
+    1b: nein    -> exit
+
+    2a: position abspeichern
+    2b: marker positionieren
+    2c: zoom level anpassen
+    2d: karte fokussieren
+    3: interval starten -> 4
+
+    4: position erfragen
+        -> ok: 5
+        -> Nok: stoppe interval
+    5: marker updaten
+
+ */
 function userPosition() {
-
-
-    /*
-        Schritte:
-
-        1. versuche die user-position zu bekommen
-        1a: ja      -> 2
-        1b: nein    -> exit
-
-        2a: position abspeichern
-        2b: marker positionieren
-        2c: zoom level anpassen
-        2d: karte fokussieren
-        3: interval starten -> 4
-
-        4: position erfragen
-            -> ok: 5
-            -> Nok: stoppe interval
-        5: marker updaten
-
-     */
-
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(
             setUserPositionSuccess,
@@ -183,22 +180,25 @@ function setUserPositionSuccess(pos) {
     console.log("got initial user position:");
     console.log(pos);
 
-    //  abspeichern
-    lat = pos.coords.latitude;
-    lng = pos.coords.longitude;
+    var ulat = pos.coords.latitude;
+    var ulng = pos.coords.longitude;
 
-//    var userPositionMarker = L.divIcon({className: 'posicon'});
-    // you can set .my-div-icon styles in CSS
-//    userPositionMarker = L.marker([lat, lng], {icon: userPositionMarker})
-//                            .addTo(map);
+    if (isPositionInScope(ulat, ulng)) {
 
-    console.log("run map.location()");
-    map.locate({
-            watch: true,
-            setView: true,
-            maxZoom: 16});
+        //  abspeichern
+        lat = ulat;
+        lng = ulng;
+        zoom = 16;
 
-    zoom = 16;
+        map.setView([lat, lng], zoom);
+    }
+
+    userPositionMarker = L.circle([ulat, ulng], (pos.coords.accuracy / 2), {
+        color: 'red',
+        fillColor: 'red',
+        fillOpacity: 0.3
+    }).addTo(map);
+
 }
 
 // callback für userPosition() FAILURE
@@ -207,65 +207,11 @@ function setUserPositionError(err) {
     canUseUserPosition = false;
 }
 
-//    // fuege einmalig aktuelle position hinzu
-//    var myPosition = L.divIcon({className: 'posicon'});
-//    // you can set .my-div-icon styles in CSS
-//
-//    userPositionMarker = L.marker([lat, lng], {icon: myPosition}).addTo(map);
-//
-//    // update current user position
-//    if (!getPositionDenied) {
-//        interval = setInterval(function() {
-////            console.log("update");
-//
-//            // check if user denied loading the position
-//            if (getPositionDenied) {
-//                clearInterval(interval);
-//                return;
-//            }
-//
-//            // load position
-//            if (navigator.geolocation && !getPositionDenied) {
-//                navigator.geolocation.getCurrentPosition(
-//                    updateCurrentPositionMarker,
-//                    updateCurrentPositionDenied);
-//            }
-//        }, 5000);
-//    }
-
-
-
-
-
-
-// ////
-// muss weg
-
-var myPositionMarker;
-var getPositionDenied = false;
-
-
-function showPosition(position) {
-    console.log("runShowPosition");
-    console.log(position);
-
-    // speicher aktuelle nutzerposition
-    var userLat = position.coords.latitude;
-    var userLng = position.coords.longitude;
-
-    if (isPositionInScope(userLat, userLng)) {
-        lat = userLat;
-        lng = userLng;
-        zoom = 16;
-    } else {
-        getPositionDenied = true;
-    }
-
-    initializeLeaflet();
-}
-
+/**
+    check if user is close to stuttgart
+ */
 function isPositionInScope(ulat, ulng) {
-    // berechne distanz zum stuttgarter Zentrum
+    // berechne distanz zum stuttgarter Zentrum§
     // kirchheim teck: 48.6442169, 9.443775
     //
     // dist:
@@ -274,73 +220,58 @@ function isPositionInScope(ulat, ulng) {
     // positiv setzen
     if (dLat < 0) { dLat = -dLat; }
     if (dLng < 0) { dLng = -dLng; }
-    console.log("dlat");
-    console.log(dLat);
-    console.log("dlng");
-    console.log(dLng);
 
-//    if (dLat > latMaxDist) {
-//        lat =
-//    }
-}
-
-//const
-
-function errorCB(error) {
-
-    var e = error.code;
-
-    switch(e) {
-        case 1:
-            console.log("Permission denied");
-            getPositionDenied = true;
-            break;
-
-        case 2:
-            console.log("Position Unavailable");
-            break;
-
-        case 3:
-            console.log("timeout");
-            break;
-
-        default:
-            console.log("an unknown error occured");
-            console.log(e);
-            alert("an unknown error occured");
+    if (dLat <= latMaxDist && dLng <= lngMaxDist) {
+        return true;
     }
 
-    initializeLeaflet();
+    return false;
 }
 
-function getPosition() {
-    console.log("runGetPosition");
-    console.log("getPositionDenied");
-    console.log(getPositionDenied);
-    if (navigator.geolocation && !getPositionDenied) {
-        navigator.geolocation.getCurrentPosition(showPosition, errorCB);
-    } else {
-        getPositionDenied = true;
-        console.log("Geolocation is not supported by this browser.");
+
+var interval;
+
+function updateUserPositionTrigger() {
+
+    if (!canUseUserPosition) {
+        return;
     }
+
+    interval = setInterval(function() {
+        console.log("update");
+
+        // wenn wir, aus welchem Grund auch immer,
+        // keine user-position mehr bekommen,
+        // hören wir auf das update laufen zu lassen
+        if (!canUseUserPosition) {
+            clearInterval(interval);
+            return;
+        }
+
+        // hole koordinaten und update user position
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(
+                updateUserPositionOnInterval,
+                stopUpdatingUserPosition
+            );
+        }
+    }, 5000);
 }
 
-function updateCurrentPositionMarker(pos) {
-    console.log("runShowPosition");
-    console.log(pos);
-    lat = pos.coords.latitude;
-    lng = pos.coords.longitude;
+function updateUserPositionOnInterval(pos) {
+    var ulat = pos.coords.latitude;
+    var ulng = pos.coords.longitude;
+    var uacc = pos.coords.accuracy;
 
-    // update marker position
-    myPositionMarker.setLatLng(L.latLng(lat, lng));
+    userPositionMarker.setLatLng([ulat, ulng]);
+    userPositionMarker.setRadius(uacc);
 }
 
-function updateCurrentPositionDenied(err) {
-    // stop requesting position in future
-    getPositionDenied = true;
-    // stop interval
+function stopUpdatingUserPosition() {
     clearInterval(interval);
+    return;
 }
+
 
 
 
