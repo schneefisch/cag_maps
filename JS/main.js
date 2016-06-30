@@ -68,6 +68,7 @@ function drawMap() {
     lng = lngStuttgartZentrum;
 
     initializeLeaflet();
+
 }
 
 /*
@@ -287,16 +288,18 @@ var meldungen = [
     "Schnarch*********",
     "Ups",
     "Piep",
-    "Oink"
+    "Oink",
+    "010101110101010001000110"
 ];
 
 function clickCallback(event) {
 
     // Anzahl, wie viele Meldungen wir haben
-    var nr = 8;
+    var nr = 9;
 
     // choose random message
     var index = Math.floor(Math.random() * nr);
 
     alert(meldungen[index]);
+
 }
