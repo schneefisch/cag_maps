@@ -289,18 +289,17 @@ var meldungen = [
     "Ups",
     "Piep",
     "Oink",
-    "010101110101010001000110"
+    "010101110101010001000110",
+    "Salat, Suppe, Schnitzel"
 ];
 
 function clickCallback(event) {
 
     // Anzahl, wie viele Meldungen wir haben
-    var nr = 9;
+    var nr = 10;
 
     // choose random message
     var index = Math.floor(Math.random() * nr);
-
-//    alert(meldungen[index]);
 
     // lösche existierende meldung aus dem div
     document.getElementById("meldungstext").textContent = meldungen[index];
@@ -308,11 +307,11 @@ function clickCallback(event) {
     // mache das div sichtbar
     document.getElementById("meldung").style.display = 'inline';
 
-    // nach einer weile, blende die meldung wieder aus
-    // setTimeout(function(){ alert("Hello"); }, 3000);
-
 }
 
+/**
+ * schließen der meldungs-box
+ */
 function closeMessage(event) {
     document.getElementById("meldung").style.display = 'none';
 }
