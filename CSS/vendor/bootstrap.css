@@ -1507,7 +1507,10 @@ hr {
 }
 
 p {
-    margin: 0 0 10px
+    margin: 0 0 10px;
+    padding: 40px 3px;
+    text-align: center;
+    margin: 0;
 }
 
 .lead {

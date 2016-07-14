@@ -300,6 +300,19 @@ function clickCallback(event) {
     // choose random message
     var index = Math.floor(Math.random() * nr);
 
-    alert(meldungen[index]);
+//    alert(meldungen[index]);
 
+    // lösche existierende meldung aus dem div
+    document.getElementById("meldungstext").textContent = meldungen[index];
+
+    // mache das div sichtbar
+    document.getElementById("meldung").style.display = 'inline';
+
+    // nach einer weile, blende die meldung wieder aus
+    // setTimeout(function(){ alert("Hello"); }, 3000);
+
+}
+
+function closeMessage(event) {
+    document.getElementById("meldung").style.display = 'none';
 }

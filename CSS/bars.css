@@ -114,6 +114,21 @@ a {
     color: #000;
 }
 
+.floatr {
+    float: right;
+    color: #ddd;
+    margin-right: 3px;
+    font-size: 1.5em;
+    margin-top: -7px;
+    padding-top: -3px;
+}
+
+.floatr:hover {
+    color: #f00;
+    text-decoration: none;
+    cursor:url(../IMG/gta5_new.png) -30 -30,pointer;
+}
+
 /* maps */
 
 #include_content .container {
@@ -146,5 +161,52 @@ a {
 
 #meldung {
     /* visibility: hidden; */
-    /* display: none; */
+    display: none;
+    z-index: 5;
+    position: absolute;
+    width: 40%;
+    margin-left: 30%;
+    margin-top: calc(50vh - 100px);
+    color: #ddd;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
+
+#meldung h3 {
+    background-color: #3D3E3F;
+    padding: 3px;
+    margin: 0;
+}
+
+#meldung p {
+    background-color: #038681;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    /* z-index: 3; */
+       /* position: absolute; */
+       /* width: 60%; */
+       /* margin-left: 20%; */
+       /* margin-right: 20%; */
+       /* background-color: #777; */
+       /* margin-top: calc(40vh); */
+       /* padding: 7px; */
+       /* border-radius: 4px; */
+       /* border: 1px solid #555!important; */
+       /* box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); */
