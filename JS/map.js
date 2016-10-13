@@ -53,6 +53,14 @@ var DataStoreObject = function() {
         _lastId++;
         var id = _lastId;
 
+        var tmpStone = {
+                "name": stone.name,
+                "street": stone.street,
+                "link": stone.link,
+                "lat": parseFloat(stone.lat),
+                "lng": parseFloat(stone.lng)
+        }
+
         // ----------------
         // insert into data
         _stones[id] = stone;
@@ -71,10 +79,10 @@ var DataStoreObject = function() {
 
         for(var i = 0; i <= _lastId; i++) {
             var _tmp = _stones[i];
-            if (parseInt(_tmp.lat) >= fromLat
-                    && parseInt(_tmp.lat) <= toLat
-                    && parseInt(_tmp.lng) >= fromLng
-                    && parseInt(_tmp.lng) <= toLng) {
+            if (_tmp.lat >= fromLat
+                    && _tmp.lat <= toLat
+                    && _tmp.lng >= fromLng
+                    && _tmp.lng <= toLng) {
 
                 result.push(_tmp);
             }
