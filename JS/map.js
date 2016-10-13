@@ -2,28 +2,32 @@
  * This represents the datastore class
  *
  */
-function DataStoreObject = () {
+var DataStoreObject = function() {
 
     // declare private variables
 
-    // create an index of
-    var index = {};
     // holds all data
-    var data = {};
+    var _stones = {};
+    // quadranten
+    var _quadranten = {};
     // id count
-    var lastId = -1;
-
+    var _lastId = -1;
 
 
     /**
      * insert a stone object into the datastore
-     * stone = {
-            name:"Lilly Abele",
-            street:"Karl-Kloß-Str. 42",
-            link="http://www.stolpersteine-stuttgart.de/index.php?docid=585&mid=66",
-            lat="48.75774999999999",
-            lng="9.15907"
-       }
+     * stone
+
+       var data = {
+            "1" : {
+                name:"Lilly Abele",
+                street:"Karl-Kloß-Str. 42",
+                link="http://www.stolpersteine-stuttgart.de/index.php?docid=585&mid=66",
+                lat="48.75774999999999",
+                lng="9.15907"
+                },
+            "2" : {}
+        }
 
        we expect a range of lat/lng from
         48.963931, 8.814221
@@ -43,33 +47,49 @@ function DataStoreObject = () {
         we should probably differentiate in the index to the third place behind the comma
      */
      this.insertStone = function(stone) {
-        // TODO
 
         // -------------
         // create new id
-
+        _lastId++;
+        var id = _lastId;
 
         // ----------------
         // insert into data
+        _stones[id] = stone;
 
 
         // -----------------
-        // insert into index
+        // insert into index (quadrants)
 
-        //
+        //TODO
      }
 
 
-    this.getStone = function(id) {
-        // TODO
-    }
-
-
     this.getStones = function(fromLat, toLat, fromLng, toLng) {
-        // TODO
+
+        var result = new Array();
+
+        for(var i = 0; i <= _lastId; i++) {
+            var _tmp = _stones[i];
+            if (parseInt(_tmp.lat) >= fromLat
+                    && parseInt(_tmp.lat) <= toLat
+                    && parseInt(_tmp.lng) >= fromLng
+                    && parseInt(_tmp.lng) <= toLng) {
+
+                result.push(_tmp);
+            }
+
+        }
+
+        return result;
     }
 
-} DataStore = new DataStoreObject();
+
+    this.getAllStones = function() {
+        return _stones;
+    }
+};
+//} DataStore = new DataStoreObject();
 
 
 // ---------------------------------------
@@ -89,6 +109,7 @@ function loadStoneData() {
     });
 }
 
+var data = new DataStoreObject();
 
 /**
  * get the raw csv-data and parse it into the dataStore
@@ -105,18 +126,22 @@ function initDataStore(rawData) {
     for (var i = 1; i < length; i++) {
         var tmp = allLines[i].split(",");
         if (tmp.length == title.length) {
-
-            // insert new stonedata into DataStore
-            DataStore.insertStone({
-                name: tmp[0],
-                street: tmp[1],
-                link: tmp[2],
-                lat: tmp[3],
-                lng: tmp[4]
-            });
+            data.insertStone(
+                {
+                    "name": tmp[0],
+                    "street": tmp[1],
+                    "link": tmp[2],
+                    "lat": tmp[3],
+                    "lng": tmp[4]
+                }
+            );
         }
     }
 
+    console.log("stored all stones in data");
+
+    // continue with loading everything into the map\
+    drawMarkers();
 }
 
 
@@ -141,6 +166,36 @@ function initMap() {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+}
+
+
+function drawMarkers() {
+
+
+    // get user position
+    // TODO
+
+
+    // get shown lat/lng
+    // TODO
+
+
+    // get stones for lat/lng
+    var selectedStones = data.getStones(48.7775026,48.7785026,9.166000,9.1680939);
+
+    console.log("found following stones");
+    console.log(selectedStones);
+    console.log(selectedStones.length);
+
+
+    for( var i=0; i<selectedStones.length; i++) {
+
+        var tmpStone = selectedStones[i];
+        console.log(tmpStone);
+        var text = '<a target="_blank" href="' + tmpStone.link  + '">' + tmpStone.name + '</a><br>' + tmpStone.street;
+        L.marker([tmpStone.lat,tmpStone.lng]).addTo(map).bindPopup(text);
+    }
+
 }
 
 
