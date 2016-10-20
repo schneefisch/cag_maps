@@ -239,7 +239,6 @@ function drawMarkers() {
     // Wenn viele (?) quadranten vorhanden sind, nur einen marker in die mitte mit der anzahl vorhandener marker
 
 
-
     // get stones for lat/lng
     var selectedStones = data.getStones(northEastLat, southWestLat, northEastLng, southWestLng);
 
@@ -260,7 +259,7 @@ function drawMarkers() {
 }
 
 
-function getCurrentUserPosition() {
+function drawCurrentUserPosition() {
 
 }
 
