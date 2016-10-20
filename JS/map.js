@@ -75,15 +75,45 @@ var DataStoreObject = function() {
 
     this.getStones = function(fromLat, toLat, fromLng, toLng) {
 
+        console.log("perform getStones()");
+
+        // sicherstellen, dass die Werte Fliesskommazahlen sind
+        var _fromLat = parseFloat(fromLat);
+        var _toLat = parseFloat(toLat);
+        var _fromLng = parseFloat(fromLng);
+        var _toLng = parseFloat(toLng);
+
+        // sicherstellen, dass "from" kleiner ist als "to"
+        var _t = 0.0;
+        if (_toLat < _fromLat) {
+            _t = _toLat;
+            _toLat = _fromLat;
+            _fromLat = _t;
+        }
+        if (_toLng < _fromLng) {
+            _t = _toLng;
+            _toLng = _fromLng;
+            _fromLng = _t;
+        }
+
         var result = new Array();
 
         for(var i = 0; i <= _lastId; i++) {
-            var _tmp = _stones[i];
-            if (_tmp.lat >= fromLat
-                    && _tmp.lat <= toLat
-                    && _tmp.lng >= fromLng
-                    && _tmp.lng <= toLng) {
 
+            // lade jeweils einen stein nach dem anderen
+            var _tmp = _stones[i];
+
+            // parse laengen- und breitengrad in fliesskommazahlen
+            var _lat = parseFloat(_tmp.lat);
+            var _lng = parseFloat(_tmp.lng);
+
+            // pruefe ob der aktuelle stein innerhalb des angegebenen bereichs liegt
+            if (_lat >= _fromLat
+                    && _lat <= _toLat
+                    && _lng >= _fromLng
+                    && _lng <= _toLng) {
+
+                // abspeichern in der ergebnissliste
                 result.push(_tmp);
             }
 
@@ -148,7 +178,13 @@ function initDataStore(rawData) {
 
     console.log("stored all stones in data");
 
-    // continue with loading everything into the map\
+    // continue with loading everything into the map
+
+    // ToDo:
+    // entweder eine kontinuierliche Schleife mit update der Userposition
+    // oder wir machen einen "event-listener" für
+    // - veränderung des Zooms
+    // - verschieben der Karte
     drawMarkers();
 }
 
@@ -156,7 +192,7 @@ function initDataStore(rawData) {
 // -------------
 // stolpersteine und karte
 
-var map, lat, lng;
+var map, markers, lat, lng;
 var latStuttgartZentrum = 48.7784485;
 var lngStuttgartZentrum = 9.1800132;
 var zoom = 13;
@@ -174,34 +210,51 @@ function initMap() {
     L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
             attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
         }).addTo(map);
+
+    markers = new Array();
 }
 
 
 function drawMarkers() {
 
-
-    // get user position
-    // TODO
-
+    // entferne alle marker
+    for (var i=0; i < markers.length; i++) {
+        map.removeLayer(markers[i]);
+    }
 
     // get shown lat/lng
-    // TODO
+    // von der Karte hole die "bounds", d.h. aussenkante
+    var viewBounds = map.getBounds();
+    var northEastLat, northEastLng, southWestLat, southWestLng;
+    // runde auf die dritte stelle hinter dem komma
+    northEastLat = (Math.ceil(viewBounds._northEast.lat * 1000)) / 1000;
+    northEastLng = (Math.floor(viewBounds._northEast.lng * 1000)) / 1000;
+    southWestLat = (Math.floor(viewBounds._southWest.lat * 1000)) / 1000;
+    southWestLng = (Math.ceil(viewBounds._southWest.lng * 1000)) / 1000;
+
+    // TODO:
+    // einteilen in einzelne kleiner quadranten
+
+    // TODO:
+    // Wenn viele (?) quadranten vorhanden sind, nur einen marker in die mitte mit der anzahl vorhandener marker
+
 
 
     // get stones for lat/lng
-    var selectedStones = data.getStones(48.7775026,48.7785026,9.166000,9.1680939);
+    var selectedStones = data.getStones(northEastLat, southWestLat, northEastLng, southWestLng);
 
     console.log("found following stones");
     console.log(selectedStones);
     console.log(selectedStones.length);
-
 
     for( var i=0; i<selectedStones.length; i++) {
 
         var tmpStone = selectedStones[i];
         console.log(tmpStone);
         var text = '<a target="_blank" href="' + tmpStone.link  + '">' + tmpStone.name + '</a><br>' + tmpStone.street;
-        L.marker([tmpStone.lat,tmpStone.lng]).addTo(map).bindPopup(text);
+        var newMarker = L.marker([tmpStone.lat,tmpStone.lng]);
+        markers.push(newMarker);
+        newMarker.addTo(map).bindPopup(text);
     }
 
 }
