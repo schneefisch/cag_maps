@@ -80,4 +80,16 @@ $(document).ready(function() {
     console.log("start rendering map");
     renderMap();
     loadStones();
+    // TODO: find current view-box
+
+    // TODO: load data from a defined coordinate-box minlat, maxlat, minlng, maxlng
+
+    // TODO: draw markers on map (keep in mind to delete markers again)
+
+    // TODO: Add event listener on any map change
+
+    // TODO: delete existing markers
+
+    // TODO: reload and redraw markers
+
 });
