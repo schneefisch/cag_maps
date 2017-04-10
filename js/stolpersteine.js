@@ -93,3 +93,10 @@ $(document).ready(function() {
     // TODO: reload and redraw markers
 
 });
+
+// TODO: add info-box in index.html, possibly as modal dialogue
+
+// TODO: fill in the modal dialogue with
+// - contact
+// - reference who developed this
+// - imprint
