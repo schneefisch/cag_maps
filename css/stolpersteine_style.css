@@ -21,3 +21,7 @@ html, body, #map {
 #infoBtn a {
     z-index: 10001;
 }
+
+.modal-dialog {
+    background-color: #fff;
+}
