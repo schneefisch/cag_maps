@@ -1,18 +1,19 @@
 <!DOCTYPE html>
-<html>
-<head lang="de">
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>StolperSteinKarte</title>
-    <link rel="icon" href="IMG/Icon.png">
-    <link rel="stylesheet" type="text/css" href="CSS/vendor/bootstrap.css">
-    <link rel="stylesheet" type="text/css" href="JS/leaflet/leaflet.css"/>
-    <link rel="stylesheet" type="text/css" href="CSS/bars.css"/>
-    <script src="JS/vendor/jquery.js"></script>
-    <script src="JS/vendor/jquery-ui/jquery-ui.min.js"></script>
-    <script src="JS/vendor/bootstrap.js"></script>
-    <script src="JS/leaflet/leaflet.js"></script>
-    <script src="JS/main.js"></script>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+    <title>Stolpersteine Stuttgart Karte</title>
+    <link rel="icon" href="img/icon.png"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap.min.css"/>
+    <link rel="stylesheet" type="text/css" href="css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" type="text/css" href="js/leaflet/leaflet.css"/>
+    <link rel="stylesheet" type="text/css" href="css/stolpersteine_style.css"/>
+    <script src="js/vendor/jquery-3.2.0.min.js"></script>
+    <script src="js/vendor/bootstrap.min.js"></script>
+    <script src="js/vendor/modernizr-custom.js"></script>
+    <script src="js/leaflet/leaflet.js"></script>
+    <script src="js/stolpersteine.js"></script>
     <!-- Piwik -->
     <script type="text/javascript">
       var _paq = _paq || [];
@@ -30,51 +31,70 @@
     <!-- End Piwik Code -->
 </head>
 <body>
-<!-- Navbar-Top-->
-<div id="topmenu" class="container-fluid">
-    <div class="navbar-header">
-        <button class="navbar-toggle collapsed" type="button" data-toggle="collapse" data-target="#bs-navbar"
-                aria-controls="bs-navbar" aria-expanded="false">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-        </button>
-    </div>
-    <!--<nav id="bs-navbar" class="navbar navbar-default navbar-fixed-top collapse navbar-collapse">-->
-    <nav id="bs-navbar" class="collapse navbar-collapse">
-        <ul class="nav navbar-nav">
-            <li class="navbar-link"><a id="nav_home" href="#">Stolpersteine Karte</a></li>
-            <li class="navbar-link"><a id="nav_stones" href="#">Steinliste</a></li>
-            <li class="navbar-link"><a id="nav_developers" href="#">Developers</a></li>
-            <li class="navbar-link visible-xs"><a onclick="" class="nav_impressum" href="#">Impressum</a></li>
-            <li class="navbar-link visible-xs"><a onclick="" class="nav_referenz" href="#">Datenschutz</a></li>
-        </ul>
-    </nav>
-</div>
-<!-- /Navbar-Top -->
-<!--Content-->
-<div class="container-fluid" id="content">
-    <div id="relative">
-        <div class="row p">
-            <div id="include_content"></div>
+    <!--<div class="leaflet-control-container">-->
+        <div id="infoBtn" class="">
+            <button type="button" class="btn btn-large btn-info" data-toggle="modal" data-target="#infoModal">i</button>
+        </div>
+    <!--</div>-->
+    <div id="map"></div>
+    <div id="infoModal" class="modal fade" role="dialog" title="Information">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                <h4 class="modal-title">Informationen</h4>
+            </div>
+            <div class="modal-body">
+                <h4>Die Macher</h4>
+                <p>Die Stolpersteine-Karte wurde von der Computer-AG der Freien Waldorfschule B&ouml;blingen-Sindelfingen
+                gemacht.</p>
+                <p>Sch&uuml;ler:</p>
+                <ul>
+                    <li>Naila</li>
+                    <li>Ulf</li>
+                    <li>Samuel</li>
+                </ul>
+                <hr/>
+                <h4>Impressum</h4>
+                <h5>Kontakt</h5>
+                <p>Florian R&ouml;ser<br>
+                    Dieselstr. 11<br>
+                    75392 Deckenpfronn</p>
+                <p>E-Mail: mail[at]schneefisch.de</p>
+                <p>Quelle: eRecht24</p>
+                <h2>Haftungsausschluss (Disclaimer)</h2>
+                <h3>Haftung f&uuml;r Inhalte</h3>
+                <p>Als Diensteanbieter sind wir gem&auml;&szlig; § 7 Abs.1 TMG f&uuml;r eigene Inhalte auf diesen Seiten
+                    nach den allgemeinen Gesetzen verantwortlich. Nach §§ 8 bis 10 TMG sind wir als Diensteanbieter jedoch
+                    nicht verpflichtet, &uuml;bermittelte oder gespeicherte fremde Informationen zu &uuml;berwachen oder
+                    nach Umst&auml;nden zu forschen, die auf eine rechtswidrige T&auml;tigkeit hinweisen. Verpflichtungen
+                    zur Entfernung oder Sperrung der Nutzung von Informationen nach den allgemeinen Gesetzen bleiben
+                    hiervon unber&uuml;hrt. Eine diesbez&uuml;gliche Haftung ist jedoch erst ab dem Zeitpunkt der Kenntnis
+                    einer konkreten Rechtsverletzung m&ouml;glich. Bei Bekanntwerden von entsprechenden Rechtsverletzungen
+                    werden wir diese Inhalte umgehend entfernen.</p>
+                <h3>Haftung f&uuml;r Links</h3>
+                <p>Unser Angebot enth&auml;lt Links zu externen Webseiten Dritter, auf deren Inhalte wir keinen Einfluss
+                    haben. Deshalb k&ouml;nnen wir f&uuml;r diese fremden Inhalte auch keine Gew&auml;hr &uuml;bernehmen.
+                    F&uuml;r die Inhalte der verlinkten Seiten ist stets der jeweilige Anbieter oder Betreiber der Seiten
+                    verantwortlich. Die verlinkten Seiten wurden zum Zeitpunkt der Verlinkung auf m&ouml;gliche
+                    Rechtsverst&ouml;&szlig;e &uuml;berpr&uuml;ft. Rechtswidrige Inhalte waren zum Zeitpunkt der Verlinkung
+                    nicht erkennbar. Eine permanente inhaltliche Kontrolle der verlinkten Seiten ist jedoch ohne konkrete
+                    Anhaltspunkte einer Rechtsverletzung nicht zumutbar. Bei Bekanntwerden von Rechtsverletzungen werden
+                    wir derartige Links umgehend entfernen.</p>
+                <h3>Urheberrecht</h3>
+                <p>Die durch die Seitenbetreiber erstellten Inhalte und Werke auf diesen Seiten unterliegen dem deutschen
+                    Urheberrecht. Die Vervielf&auml;ltigung, Bearbeitung, Verbreitung und jede Art der Verwertung
+                    au&szlig;erhalb der Grenzen des Urheberrechtes bed&uuml;rfen der schriftlichen Zustimmung des jeweiligen
+                    Autors bzw. Erstellers. Downloads und Kopien dieser Seite sind nur f&uuml;r den privaten, nicht
+                    kommerziellen Gebrauch gestattet. Soweit die Inhalte auf dieser Seite nicht vom Betreiber erstellt
+                    wurden, werden die Urheberrechte Dritter beachtet. Insbesondere werden Inhalte Dritter als solche
+                    gekennzeichnet. Sollten Sie trotzdem auf eine Urheberrechtsverletzung aufmerksam werden, bitten wir
+                    um einen entsprechenden Hinweis. Bei Bekanntwerden von Rechtsverletzungen werden wir derartige Inhalte
+                    umgehend entfernen.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
         </div>
     </div>
-</div>
-<!--/Content-->
-<!--Footer-->
-<nav class="navbar navbar-inverse navbar-fixed-bottom hidden-xs" id="footer">
-    <div class="container-fluid">
-        <div class="collapse navbar-collapse">
-            <ul class="nav navbar-nav">
-                <li class="navbar-link"><a onclick="" class="nav_impressum" href="#">Impressum</a></li>
-                <li class="navbar-link"><a onclick="" class="nav_referenz" href="#">Datenschutz</a></li>
-            </ul>
-        </div>
-    </div>
-</nav>
-<script>
-    initializeNavigation();
-</script>
 </body>
 </html>
