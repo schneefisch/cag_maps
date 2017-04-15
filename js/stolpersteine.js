@@ -4,14 +4,13 @@ var lngStuttgartZentrum = 9.1800132;
 var zoom = 15;
 var key = "st";
 var _stones;
-var _markers = [];
+var markerLayerGroup;
 
 function loadMarkers(minlat, maxlat, minlng, maxlng) {
     console.log('loadMarkers(minlat, maxlat, minlng, maxlng)');
 
     var selectedStones = new Array();
     for (var i = (_stones.length - 1); i >= 0; i--) {
-        console.log(i);
         // check if stone is inside the bounds
         if (_stones[i].lat >= minlat && _stones[i].lat <= maxlat
             && _stones[i].lng >= minlng && _stones[i].lng >= minlng) {
@@ -31,27 +30,33 @@ function fillMarkersToMap() {
             bounds._northEast.lat,
             bounds._southWest.lng,
             bounds._northEast.lng);
+    var markersArray = new Array();
+    // for each marker (Stolperstein data-point), create a
+    // leaflet Marker and add to the markersArray
     markers.forEach(function (item, index, array) {
-        var m = L.marker([item.lat, item.lng]).addTo(map);
+        var m = L.marker([item.lat, item.lng]);
         var text;
-        if (typeof item.uri === 'undefined') {
+        if (typeof item.uri === 'undefined' || item.uri === null || item.uri == '') {
             text = item.name + '<br>' + item.street;
         } else {
             text = '<a target="_blank" href="' + item.uri + '">' + item.name + '</a><br>' + item.street;
         }
         m.bindPopup(text);
-        _markers.push(m);
+        markersArray.push(m);
     });
-    // TODO: investigate possible problem with Annie Ullmann
+    // create a new LayerGroup from the markers, then we can easily
+    // remove all markers again later
+    markerLayerGroup = L.layerGroup(markersArray);
+    // draw the layergroup to the map
+    markerLayerGroup.addTo(map);
 }
 
 function loadStonesFromCSVCallback(stones) {
     console.log("loadStonesFromCSVCallback(stones)");
     // add to browser cache
     sessionStorage.setItem(key, JSON.stringify(stones));
+    // store in global variable
     _stones = stones;
-//    console.log(_stones);
-
     fillMarkersToMap();
 }
 
@@ -114,6 +119,18 @@ function loadStones() {
     }
 }
 
+/**
+ * remove existing markers
+ * load markers for current bounding box
+ * draw markers
+ */
+function updateMarkers() {
+    console.log('updateMarkers() called');
+    markerLayerGroup.clearLayers();
+    markerLayerGroup.remove();
+    loadStones();
+}
+
 function renderMap() {
     console.log("renderMap()");
 
@@ -129,14 +146,12 @@ function renderMap() {
 
 $(document).ready(function() {
     console.log("start working");
+    // render the basic leafletjs map
     renderMap();
+    // load the stolpersteine and draw to the map
     loadStones();
-    // TODO: Add event listener on any map change
-
-    // TODO: delete existing markers
-
-    // TODO: reload and redraw markers
-
+    // add listener and redraw the stolpersteine
+    map.on('moveend', updateMarkers);
 });
 
 // TODO: add info-box in index.html, possibly as modal dialogue
