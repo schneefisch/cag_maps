@@ -312,7 +312,3 @@ $(document).ready(function() {
     // add user-position
     userPosition();
 });
-
-// TODO: find user position
-// TODO: draw circle at user position
-// TODO: update user-position regularly
