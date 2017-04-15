@@ -54,7 +54,9 @@ function fillMarkersToMap() {
 function loadStonesFromCSVCallback(stones) {
     console.log("loadStonesFromCSVCallback(stones)");
     // add to browser cache
-    sessionStorage.setItem(key, JSON.stringify(stones));
+    if (Modernizr.localstorage) {
+        sessionStorage.setItem(key, JSON.stringify(stones));
+    }
     // store in global variable
     _stones = stones;
     fillMarkersToMap();
