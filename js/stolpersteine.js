@@ -144,14 +144,22 @@ function renderMap() {
     }).addTo(map);
 }
 
+function openInfoDialogue() {
+    $('#dialog').dialog();
+}
+
 $(document).ready(function() {
     console.log("start working");
     // render the basic leafletjs map
     renderMap();
     // load the stolpersteine and draw to the map
     loadStones();
-    // add listener and redraw the stolpersteine
+    // add listener to map and redraw the stolpersteine
     map.on('moveend', updateMarkers);
+    // add listener to info button
+    $('#infoBtn').click(function() {
+        openInfoDialogue();
+    });
 });
 
 // TODO: add info-box in index.html, possibly as modal dialogue

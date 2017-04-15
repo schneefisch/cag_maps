@@ -31,9 +31,24 @@
     <!-- End Piwik Code -->
 </head>
 <body>
+    <!--<div class="leaflet-control-container">-->
+        <div id="infoBtn" class="">
+            <button type="button" class="btn btn-large btn-info" data-toggle="modal" data-target="#infoModal">i</button>
+        </div>
+    <!--</div>-->
     <div id="map"></div>
-    <div id="infoBtn" class="leaflet-top leaflet-control">
-        <button type="button" class="btn btn-info">i</button>
+    <div id="infoModal" class="modal fade" role="dialog" title="Information">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>This is the default dialog which is useful for displaying information. The dialog window can be moved, resized and closed with the 'x' icon.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
